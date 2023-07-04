@@ -112,7 +112,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   Hero(
                     tag: widget.id,
                     child: Container(
-                      width: 250,
+                      width: 150,
                       clipBehavior: Clip.hardEdge,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
@@ -152,26 +152,28 @@ class _DetailScreenState extends State<DetailScreen> {
                     return const Text("...");
                   }),
               const SizedBox(height: 25),
-              FutureBuilder(
-                  future: episodes,
-                  builder: (context, AsyncSnapshot snapshot) {
-                    if (snapshot.hasData) {
-                      // fixed 10 items - use Column >> ListView
-                      return Column(
-                        children: [
-                          // collection for - build
-                          for (var episode in snapshot.data!.length > 10
-                              ? snapshot.data!.sublist(0, 10)
-                              : snapshot.data!)
-                            Episode(
-                              episode: episode,
-                              webtoonId: widget.id,
-                            ),
-                        ],
-                      );
-                    }
-                    return Container();
-                  }),
+              GestureDetector(
+                child: FutureBuilder(
+                    future: episodes,
+                    builder: (context, AsyncSnapshot snapshot) {
+                      if (snapshot.hasData) {
+                        // fixed 10 items - use Column >> ListView
+                        return Column(
+                          children: [
+                            // collection for - build
+                            for (var episode in snapshot.data!.length > 10
+                                ? snapshot.data!.sublist(0, 10)
+                                : snapshot.data!)
+                              Episode(
+                                episode: episode,
+                                webtoonId: widget.id,
+                              ),
+                          ],
+                        );
+                      }
+                      return Container();
+                    }),
+              ),
             ],
           ),
         ),

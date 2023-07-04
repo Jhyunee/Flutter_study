@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
             return Column(
               children: [
                 const SizedBox(
-                  height: 50,
+                  height: 150,
                 ),
                 // ListView needs a height (if not, infinite)
                 Expanded(child: makeList(snapshot)),
